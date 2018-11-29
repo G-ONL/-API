@@ -6,7 +6,7 @@ from .models import Payment, Payment_address
 from Product.models import Product
 from rest_framework import status
 from django.forms.models import model_to_dict
-
+from django.db import transaction
 
 #수량체크 
 def Quantity_check(product_id, quantity):
@@ -18,6 +18,7 @@ def Quantity_check(product_id, quantity):
         product.save()
         return True
 
+@transaction.atomic
 @api_view(['POST'])
 def Payment_create(request):
     if request.method == 'POST':

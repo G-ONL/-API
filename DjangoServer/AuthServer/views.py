@@ -61,7 +61,7 @@ def seller_signin(request):
 
             seller_query = Seller.objects.get(seller_email=request.data['seller_email'])
 
-        except Seller.DoseNotExist:
+        except Seller.DoesNotExist:
             return Response({"code" : "Failure", "message" : "Invalid Seller Email"} , status=status.HTTP_200_OK)
 
         # 패스워드 까지 일치하여 판매자 로그인 성공
@@ -91,23 +91,24 @@ def consumer_signup(request):
         serializer = ConsumerSerializer(data=request.data)
 
         if serializer.is_valid(): # data가 Model에 추가될 수 있는지 확인
-            print("is_valid지롱")
+            print("is_valid지롱~~~~~~~")
             serializer.save()
 
-            # TODO 회원 가입 인증 메일 발송 (먼저 DB에 넣고 인증 메일 발송할건지, or 인증메일 발송 없이 회원 가입 할건지?- 안하기로 함!
+            # TODO 회원 가입 인증 메일 발송 (먼저 DB에 넣고 인증 메일 발송할건지, or 인증메일 발송 없이 회원 가입 할건지?- 안하기로 함!!
 
             result_msg = serializer.data
 
             return Response(
                 {
                     "code" : status_code['CONSUMER_SIGNUP_SUCCESS']['code'],
-
                     "message": status_code['CONSUMER_SIGNUP_SUCCESS']['msg'],
                     "result" : result_msg
                 },
                 status=status.HTTP_200_OK)
 
-        return Response(
+        else:
+            print(serializer.errors)
+            return Response(
             {
                 "code" : status_code['CONSUMER_WRONG_PARAMETER']['code'],
                 "message" : status_code['CONSUMER_WRONG_PARAMETER']['msg'],
@@ -122,7 +123,7 @@ def consumer_signup(request):
             return Response(
                 {
                     "code" : status_code['CONSUMER_GET_LIST']['code'],
-                    "message" : status_code['CONSUMER_GET_LIST']['msg'],
+                    "msg" : status_code['CONSUMER_GET_LIST']['msg'],
                     "result" : result_msg
                 },
                 status=status.HTTP_200_OK)
@@ -130,7 +131,7 @@ def consumer_signup(request):
             return Response(
                 {
                     "code": status_code['CONSUMER_GET_LIST_FAILURE']['code'],
-                    "message": status_code['CONSUMER_GET_LIST_FAILURE']['msg'],
+                    "msg": status_code['CONSUMER_GET_LIST_FAILURE']['msg'],
                     "result": result_msg
                 },
                 status=status.HTTP_200_OK)
@@ -140,27 +141,65 @@ def consumer_signup(request):
 @csrf_exempt
 def consumer_signin(request):
     if request.method == 'POST':
-        try:
+        try: # request로 받은 data DB에 있는지 확인 (email 확인)
             received = json.dumps(request.data)
             print(received)
 
-            consumer_query = Consumer.objects.get(seller_email=request.data['consumer_email'])
+            consumer_query = Consumer.objects.get(consumer_email=request.data['consumer_email'])
 
-        except Consumer.DoseNotExist:
-            return Response({"code" : "Failure", "message" : "Invalid Consumer Email"} , status=status.HTTP_200_OK)
+        except Consumer.DoesNotExist:
+            return Response(
+                {
+                    "code" : status_code['CONSUMER_SIGNIN_INVALID_EMAIL']['code'],
+                    "msg" : status_code['CONSUMER_SIGNIN_INVALID_EMAIL']['msg'],
+                    "results" : request.data
+                },
+                status=status.HTTP_200_OK
+            )
 
         # phone 까지 일치하여 판매자 로그인 성공
-        if request.data['consumer_phone'] == consumer_query.consumer_phone:
-            token = create_token(consumer_query)
+        # if request.data['consumer_phone'] == consumer_query.consumer_phone:
+        try: # 핸드폰번호까지 맞는지 확인
 
-            token_result_msg = {'Token': token, 'seller_id': consumer_query.id,
-                                                    'seller_email': consumer_query.seller_email}
+            consumer_phone_query = Consumer.objects.get(consumer_email=request.data['consumer_email'], consumer_phone=request.data['consumer_phone'])
+
+            print(consumer_phone_query.id)
+
+        except Consumer.DoesNotExist: # 핸드폰번호 틀림
+            return Response(
+                {
+                    "code" : status_code['CONSUMER_SIGNIN_INVALID_PHONE']['code'],
+                    "msg" : status_code['CONSUMER_SIGNIN_INVALID_PHONE']['msg'],
+                    "results" : request.data
+                },
+                status=status.HTTP_200_OK
+            )
+
+        else: # 핸드폰 번호 까지 맞음 (로그인 성공)
+
+            token = create_token(consumer_phone_query)
+
+            token_result_msg = {
+                'Token': token,
+                'consumer_id': consumer_phone_query.id,
+                'consumer_email': consumer_phone_query.consumer_email,
+                'consumer_phone' : consumer_phone_query.consumer_phone
+            }
 
             # Client 에게 토큰을 json에 담아 보냄
 
-            print(token_result_msg)
+            # print(token_result_msg) # 토큰 print
 
-            send_data = {'Token': token, 'User': consumer_query}
+            send_data = {
+                'Token': token,
+                'User': consumer_query
+            }
 
-        else:
-            return Response({"code" : "Failure", "message" : "Invalid Consumer Password"} , status=status.HTTP_200_OK)
+            return Response(
+                {
+                    "code": status_code['CONSUMER_SIGNIN_SUCCESS']['code'],
+                    "msg": status_code['CONSUMER_SIGNIN_SUCCESS']['msg'],
+                    "results": token_result_msg
+                },
+                status=status.HTTP_200_OK
+            )

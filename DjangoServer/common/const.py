@@ -52,4 +52,21 @@ status_code = {
         "results": []
     },
 
+    'CONSUMER_SIGNIN_SUCCESS': {
+        "code": 1202,
+        "msg": "구매자 로그인에 성공했습니다.",
+        "results": []
+    },
+
+    'CONSUMER_SIGNIN_INVALID_EMAIL': {
+        "code": 1202,
+        "msg": "구매자 로그인에 실패했습니다.",
+        "results": []
+    },
+    'CONSUMER_SIGNIN_INVALID_PHONE': {
+        "code": 1405,
+        "msg": "구매자 로그인에 실패했습니다. 유효하지 않은 전화번호입니다.",
+        "results": []
+    },
+
 }

@@ -4,9 +4,13 @@ import jwt, datetime
 
 def create_token(query):
 
+    header = {
+        "typ": "JWT",
+        "alg": "HS256"
+    }
+
     payload = {
-        'seller_email': query.seller_email,
-        'seller_password': query.seller_password,
+        'consumer_id': query.id,
         'datetime': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
     }
 

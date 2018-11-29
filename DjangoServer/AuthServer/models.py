@@ -6,7 +6,7 @@ from django.db import models
 # 구매자 모델
 class Consumer(models.Model):
     consumer_email = models.CharField(max_length=45, unique=True)
-    consumer_phone = models.CharField(max_length=10)
+    consumer_phone = models.CharField(max_length=11)
 
     def __str__(self):
         return self.consumer_email

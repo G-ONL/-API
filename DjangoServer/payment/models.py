@@ -2,7 +2,6 @@
 from django.db import models
 from AuthServer.models import Consumer
 
-
 # 상품 모델
 class Product(models.Model):
     product_name = models.CharField(max_length=45)
@@ -21,6 +20,8 @@ class Payment(models.Model):
     consumer_id = models.ForeignKey(Consumer, on_delete=models.CASCADE)
     payment_date = models.DateTimeField(auto_now_add=True)
     total_price = models.IntegerField(max_length=11)
+    payment_type = models.IntegerField(max_length=10)
+    payment_state = models.CharField(max_length=20)
 
     def __str__(self):
         return self.consumer_id.consumer_email + "님의 결제 정보"

@@ -18,7 +18,7 @@ class ConsumerSerializer(serializers.HyperlinkedModelSerializer):
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Product
-        fields = ('product_name','product_price','product_quantity', 'product_state', 'product_url', 'seller')
+        fields = ('product_name','product_price','product_quantity', 'product_state', 'product_url', 'seller_id')
 
 
 class PaymentSerializer(serializers.HyperlinkedModelSerializer):

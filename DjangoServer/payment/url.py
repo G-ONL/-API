@@ -1,10 +1,11 @@
 from django.conf.urls import url
+from django.urls import path
 from . import views
 
 
 urlpatterns = [
     #payment create
-    url('/', views.Payment_create, name='payment'),
+    path('', views.Payment_create, name='payment'),
     #payment update
-    #url('/', views.payment_update, name='payment_update'),
+    path('/<int:payment_id>', views.Payment_update, name='payment_update'),
 ]

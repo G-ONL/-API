@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from AuthServer.models import Consumer, Seller
 
 # 상품 모델
 class Product(models.Model):
@@ -24,19 +23,11 @@ class Payment(models.Model):
     payment_type = models.IntegerField()
     payment_state = models.CharField(max_length=20)
 
-    def __str__(self):
-        return self + "님의 결제 정보"
-
-
 
 # 배송지 모델
 class Payment_address(models.Model):
     consumer_id = models.IntegerField()
     payment_id = models.IntegerField()
     address = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self + "님의 배송지 정보"
-
 
 # Create your models here.

@@ -3,8 +3,8 @@ function sendUserInfo(email, phone) {
     var jsonModel = '{ "login" : "' + email + '", "password" : "' + phone + '"}';
 
     var xhr = new XMLHttpRequest();
-
-    xhr.open('POST', 'https://www.gitflow.org/api/login');
+    var url = 'https://www.gitflow.org/api/login';
+    xhr.open('POST', url);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var data = xhr.responseText;
@@ -24,6 +24,9 @@ function sendUserInfo(email, phone) {
                 link.textContent = 'next';
                 // div tag 의 자식으로 a tag 를 삽입
                 div.appendChild(link);
+            } else {
+                // TODO response msg 에 따라 email, password 각각 틀린 정보를 체크하여 더 분기 처리 가능
+                alert("잘못된 정보를 입력하셨습니다.");
             }
         }
     };

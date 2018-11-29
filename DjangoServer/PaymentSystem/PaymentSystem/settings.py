@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 """
 Django settings for PaymentSystem project.
 
@@ -21,18 +22,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'wwknd)+a72477up#3tl$1ii)@e#)86)cu4)wn7j!k@wd*_d2-k'
+SECRET_KEY = 'k4wo+s6oh*(gna23v1p%z(xsalvb5@_8qio3sw@pg#eh5%s*_t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','*']
+ALLOWED_HOSTS = ['127.0.0.1', '*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'AuthServer',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'AuthServer.apps.AuthServerConfig',
 ]
 
 MIDDLEWARE = [
@@ -77,7 +78,7 @@ WSGI_APPLICATION = 'PaymentSystem.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-     'default': {
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'payment_system',
         'USER' : 'root',
@@ -125,4 +126,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')

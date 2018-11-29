@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="script_payment_ready.js"></script>
+</head>
+<body>
+<label for="productName">상품명</label>
+<input id="productName" readonly>
+
+<label for="productPrice">상품 가격</label>
+<input id="productPrice" readonly>
+
+<form action="http://localhost:8080/api/product/info" modelAttribute="paymentInfo" method="post">
+    <label for="quantity">수량</label>
+    <input type="text" id="quantity" name="quantity">
+
+    <label>결제 수단</label>
+    <select name="paymentType" id="paymentTypes">
+
+    </select>
+    <input type="submit" id="submit" value="submit">
+</form>
+
+<script src="script_quantity_post.js"></script>
+
+<div id="next"></div>
+</body>
+</html>

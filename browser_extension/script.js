@@ -1,5 +1,5 @@
 function sendUserInfo(email, phone) {
-    // TODO Change
+    // TODO API 에서 받는 모델에 따라 변경해야함
     var jsonModel = '{ "login" : "' + email + '", "password" : "' + phone + '"}';
 
     var xhr = new XMLHttpRequest();

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import jwt, datetime
+from AuthServer.logger_handler import server_logger
 
 def create_token(query):
 
@@ -12,12 +13,14 @@ def create_token(query):
     payload = {
         'consumer_id': query.id,
         'datetime': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        'iss': 'esp',
+        'exp': '1485270000000'
     }
 
     created_token = jwt.encode(payload, "SECRET_KEY", algorithm='HS256')
 
-    token = {'token': created_token}
 
-    print(created_token.decode('utf-8'))
+    server_logger.debug(created_token.decode('utf-8'))
+
 
     return created_token

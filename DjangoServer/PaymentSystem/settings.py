@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'AuthServer.custom_middleware.TokenMiddleware',
 ]
 
 ROOT_URLCONF = 'PaymentSystem.urls'

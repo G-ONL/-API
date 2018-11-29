@@ -21,6 +21,8 @@ var/
 *.egg
 AuthServer/migrations
 payment/migrations
+Product/migrations
+
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt

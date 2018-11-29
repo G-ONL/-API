@@ -8,7 +8,7 @@ class Payment(models.Model):
     consumer_id = models.IntegerField()
     payment_date = models.DateTimeField(auto_now_add=True)
     total_price = models.IntegerField()
-    payment_type = models.IntegerField()
+    payment_type = models.CharField(max_length=10)
     payment_state = models.CharField(max_length=20)
 
 

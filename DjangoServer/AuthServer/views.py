@@ -91,7 +91,7 @@ def consumer_signup(request):
         serializer = ConsumerSerializer(data=request.data)
 
         if serializer.is_valid(): # data가 Model에 추가될 수 있는지 확인
-            print("is_valid()지롱")
+            print("is_valid지롱")
             serializer.save()
 
             # TODO 회원 가입 인증 메일 발송 (먼저 DB에 넣고 인증 메일 발송할건지, or 인증메일 발송 없이 회원 가입 할건지?- 안하기로 함!
@@ -101,6 +101,7 @@ def consumer_signup(request):
             return Response(
                 {
                     "code" : status_code['CONSUMER_SIGNUP_SUCCESS']['code'],
+
                     "message": status_code['CONSUMER_SIGNUP_SUCCESS']['msg'],
                     "result" : result_msg
                 },
@@ -115,9 +116,24 @@ def consumer_signup(request):
             status=status.HTTP_200_OK)
 
     else: # [GET] 가입된 모든 구매자 일단 출력
-        serializer = ConsumerSerializer(Consumer.objects.all(), many=True)
-        result_msg = serializer.data
-        return Response({"code" : "Success", "message" : "Get Consumer data", "result" : result_msg}, status=status.HTTP_200_OK)
+        try:
+            serializer = ConsumerSerializer(Consumer.objects.all(), many=True)
+            result_msg = serializer.data
+            return Response(
+                {
+                    "code" : status_code['CONSUMER_GET_LIST']['code'],
+                    "message" : status_code['CONSUMER_GET_LIST']['msg'],
+                    "result" : result_msg
+                },
+                status=status.HTTP_200_OK)
+        except:
+            return Response(
+                {
+                    "code": status_code['CONSUMER_GET_LIST_FAILURE']['code'],
+                    "message": status_code['CONSUMER_GET_LIST_FAILURE']['msg'],
+                    "result": result_msg
+                },
+                status=status.HTTP_200_OK)
 
 # 구매자 로그인  - csrf 때문에 Function Based View로 구현
 @api_view(['POST'])

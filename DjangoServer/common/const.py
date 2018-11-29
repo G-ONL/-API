@@ -37,17 +37,19 @@ status_code = {
     'CONSUMER_SIGNUP_INVALID_EMAIL' : {
         "code": 1402,
         "msg": "잘못된 이메일입니다.",
-        "data": ""
+        "results" : []
     },
 
-    'USER_SIGNOUT_SUCCESS': {
-        "code": 1203,
-        "msg": "User signout success",
-        "data": ""
+    'CONSUMER_GET_LIST': {
+        "code": 1201,
+        "msg": "구매자 조회에 성공했습니다.",
+        "results": []
     },
-    'USER_SIGNOUT_FAIL': {
+
+    'CONSUMER_GET_LIST_FAILURE': {
         "code": 1403,
-        "msg": "User signout failure",
-        "data": ""
-    }
+        "msg": "구매자 조회에 실패했습니다.",
+        "results": []
+    },
+
 }

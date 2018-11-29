@@ -9,7 +9,7 @@ class Product(models.Model):
     product_quantity = models.IntegerField()
     product_state = models.IntegerField()
     product_url = models.CharField(max_length=200)
-    seller_id = models.ForeignKey(Seller, on_delete=models.CASCADE)
+    seller = models.ForeignKey(Seller, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.product_name
@@ -17,8 +17,8 @@ class Product(models.Model):
 
 # 결제 정보 모델
 class Payment(models.Model):
-    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    consumer_id = models.ForeignKey(Consumer, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    consumer = models.ForeignKey(Consumer, on_delete=models.CASCADE)
     payment_date = models.DateTimeField(auto_now_add=True)
     total_price = models.IntegerField()
     payment_type = models.IntegerField()
@@ -28,10 +28,11 @@ class Payment(models.Model):
         return self.consumer_id.consumer_email + "님의 결제 정보"
 
 
+
 # 배송지 모델
 class Payment_address(models.Model):
-    consumer_id = models.ForeignKey(Consumer, on_delete=models.CASCADE)
-    payment_id = models.ForeignKey(Payment, on_delete=models.CASCADE)
+    consumer = models.ForeignKey(Consumer, on_delete=models.CASCADE)
+    payment = models.ForeignKey(Payment, on_delete=models.CASCADE)
     address = models.CharField(max_length=50)
 
     def __str__(self):

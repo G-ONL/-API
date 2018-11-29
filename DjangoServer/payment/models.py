@@ -6,6 +6,7 @@ from django.db import models
 class Payment(models.Model):
     product_id= models.IntegerField()
     consumer_id = models.IntegerField()
+    quantity = models.IntegerField()
     payment_date = models.DateTimeField(auto_now_add=True)
     total_price = models.IntegerField()
     payment_type = models.CharField(max_length=10)

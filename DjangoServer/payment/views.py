@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from .serializers import PaymentSerializer
 from rest_framework.decorators import api_view
-from .models import Payment
+from .models import Payment, Payment_address
 from rest_framework import status
 from django.forms.models import model_to_dict
 
@@ -13,7 +13,13 @@ def Payment_create(request):
         serializer = PaymentSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({"code":"Success","msg":"결제 정보가 생성이 되었습니다.","results":serializer.data}, status=status.HTTP_200_OK)
+            address = request.data['payment_address']
+            consumer_id = request.data['consumer_id']
+            payment_id = serializer.data['id']
+            payment_address = Payment_address(payment_id= payment_id, consumer_id= consumer_id, address=address)
+            payment_address.save()
+            payment_address_dict = model_to_dict(payment_address)
+            return Response({"code":"Success","msg":"결제 정보가 생성이 되었습니다.","results":[serializer.data,payment_address_dict]}, status=status.HTTP_200_OK)
         else:
             return Response({"code": "Fail", "msg": "결제가 실패 되었습니다."},status=status.HTTP_400_BAD_REQUEST)
 

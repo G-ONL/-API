@@ -260,3 +260,7 @@ fabric.properties
 
 ### Python Patch ###
 .venv/
+
+# migration folder
+**/migration/
+**/migrations/

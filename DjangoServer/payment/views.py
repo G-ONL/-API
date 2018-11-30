@@ -23,10 +23,10 @@ def Quantity_check(product_id, quantity):
 def Payment_create(request):
     if request.method == 'POST':
         serializer = PaymentSerializer(data=request.data)
-        #수량체크 로직 돌리기
-        check = Quantity_check(request.data['product_id'],request.data['quantity'])
-        if check:
-            if serializer.is_valid():
+        if serializer.is_valid():
+            # 수량체크 로직 돌리기
+            check = Quantity_check(request.data['product_id'], request.data['quantity'])
+            if check:
                 serializer.save()
                 address = request.data['payment_address']
                 consumer_id = request.data['consumer_id']
@@ -36,9 +36,9 @@ def Payment_create(request):
                 payment_address_dict = model_to_dict(payment_address)
                 return Response({"code":"Success","msg":"결제 정보가 생성이 되었습니다.","results":[serializer.data,payment_address_dict]}, status=status.HTTP_200_OK)
             else:
-                return Response({"code": "Fail", "msg": "결제가 실패 되었습니다."},status=status.HTTP_400_BAD_REQUEST)
+                return Response({"code": "Fail", "msg": "수량이 부족합니다."},status=status.HTTP_400_BAD_REQUEST)
         else:
-            return Response({"code": "Fail", "msg": "수량이 부족합니다."},status=status.HTTP_400_BAD_REQUEST)
+            return Response({"code": "Fail", "msg": "결제가 실패 되었습니다."}, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['PUT'])

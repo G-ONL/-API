@@ -12,6 +12,7 @@
   "permissions": [
     "activeTab",
     "storage",
-    "https://www.gitflow.org/*"
+    "https://www.gitflow.org/*",
+    "http://localhost:8080/*"
   ]
 }

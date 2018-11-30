@@ -1,10 +1,18 @@
 function sendUserInfo(email, phone) {
     // TODO API 에서 받는 모델에 따라 변경해야함
-    var jsonModel = '{ "login" : "' + email + '", "password" : "' + phone + '"}';
+    var jsonModel = '{ "email" : "' + email + '", "phone" : "' + phone + '" }';
 
     var xhr = new XMLHttpRequest();
-    var url = 'https://www.gitflow.org/api/login';
+    // var url = 'https://www.gitflow.org/api/login';
+    var url = 'http://localhost:8080/api/login';
     xhr.open('POST', url);
+
+    /**
+     * onreadystatechange: 서버와의 통신이 끝났을 때 호출되는 이벤트
+     * readyState: 통신의 현재 상태 (4: 통신 완료를 의미)
+     * status: HTTP 통신의 결과를 의미 (200: 성공)
+     * responseText 는 서버에서 전송한 데이터
+     */
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var data = xhr.responseText;
@@ -19,9 +27,9 @@ function sendUserInfo(email, phone) {
                 // a tag 를 생성한다.
                 var link = document.createElement('a');
                 // 생성한 a tag 의 href 속성 추가
-                link.setAttribute('href', '/address/popup_address.html');
+                link.setAttribute('href', '/payment/ready/popup_payment_ready.html');
                 // textContent 를 추가
-                link.textContent = 'next';
+                link.textContent = 'NEXT';
                 // div tag 의 자식으로 a tag 를 삽입
                 div.appendChild(link);
             } else {

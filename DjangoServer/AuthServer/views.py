@@ -91,7 +91,6 @@ def consumer_signup(request):
         serializer = ConsumerSerializer(data=request.data)
 
         if serializer.is_valid(): # data가 Model에 추가될 수 있는지 확인
-            print("is_valid지롱~~~~~~~")
             serializer.save()
 
             # TODO 회원 가입 인증 메일 발송 (먼저 DB에 넣고 인증 메일 발송할건지, or 인증메일 발송 없이 회원 가입 할건지?- 안하기로 함!!
@@ -112,7 +111,7 @@ def consumer_signup(request):
             {
                 "code" : status_code['CONSUMER_WRONG_PARAMETER']['code'],
                 "message" : status_code['CONSUMER_WRONG_PARAMETER']['msg'],
-                "result" : request.data
+                "result" : serializer.errors
             },
             status=status.HTTP_200_OK)
 
@@ -132,7 +131,7 @@ def consumer_signup(request):
                 {
                     "code": status_code['CONSUMER_GET_LIST_FAILURE']['code'],
                     "msg": status_code['CONSUMER_GET_LIST_FAILURE']['msg'],
-                    "result": result_msg
+                    "result": serializer.errors
                 },
                 status=status.HTTP_200_OK)
 
@@ -152,13 +151,11 @@ def consumer_signin(request):
                 {
                     "code" : status_code['CONSUMER_SIGNIN_INVALID_EMAIL']['code'],
                     "msg" : status_code['CONSUMER_SIGNIN_INVALID_EMAIL']['msg'],
-                    "results" : request.data
+                    "results" : "해당 고객 id가 존재하지 않습니다."
                 },
-                status=status.HTTP_200_OK
+                status=status.HTTP_404_NOT_FOUND
             )
 
-        # phone 까지 일치하여 판매자 로그인 성공
-        # if request.data['consumer_phone'] == consumer_query.consumer_phone:
         try: # 핸드폰번호까지 맞는지 확인
 
             consumer_phone_query = Consumer.objects.get(consumer_email=request.data['consumer_email'], consumer_phone=request.data['consumer_phone'])
@@ -170,7 +167,7 @@ def consumer_signin(request):
                 {
                     "code" : status_code['CONSUMER_SIGNIN_INVALID_PHONE']['code'],
                     "msg" : status_code['CONSUMER_SIGNIN_INVALID_PHONE']['msg'],
-                    "results" : request.data
+                    "results" : "해당 고객 휴대전화 번호가 일치하지 않습니다."
                 },
                 status=status.HTTP_200_OK
             )
@@ -187,13 +184,6 @@ def consumer_signin(request):
             }
 
             # Client 에게 토큰을 json에 담아 보냄
-
-            # print(token_result_msg) # 토큰 print
-
-            send_data = {
-                'Token': token,
-                'User': consumer_query
-            }
 
             return Response(
                 {

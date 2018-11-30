@@ -68,5 +68,30 @@ status_code = {
         "msg": "구매자 로그인에 실패했습니다. 유효하지 않은 전화번호입니다.",
         "results": []
     },
+    'PAYMENT_CREATE_SUCCESS': {
+        "code": 2001,
+        "msg": "결제 정보가 생성되었습니다.",
+        "results": []
+    },
+    'PAYMENT_CREATE_FAIL':{
+        "code": 2002,
+        "msg": "결제에 실패하였습니다.",
+        "result" : []
+    },
+    'PAYMENT_UPDATE_SUCCESS': {
+        "code": 2003,
+        "msg": "결제 정보가 업데이트 되었습니다."
+    },
+    'OUTOFSTACK':{
+        "code": 2003,
+        "msg": "재고가 부족합니다.",
+        "result": []
+    },
+    'PAYMENT_MODIFIED':{
+        "code": 2004,
+        "msg": "결제번호가 다릅니다.",
+        "result": []
+    }
+
 
 }

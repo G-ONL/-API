@@ -7,5 +7,5 @@ urlpatterns = [
     #payment create
     path('', views.Payment_create, name='payment'),
     #payment update
-    path('/<int:payment_id>', views.Payment_update, name='payment_update'),
+    path('<int:payment_id>', views.Payment_update, name='payment_update'),
 ]

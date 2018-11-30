@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Django settings for PaymentSystem project.
 
@@ -21,18 +20,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'wwknd)+a72477up#3tl$1ii)@e#)86)cu4)wn7j!k@wd*_d2-k'
+SECRET_KEY = 'g-%2i#o+j#nb2m()0$3+g1b4g^-z+ug1(xhqjgi5l8-756s+*_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'AuthServer',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'payment',
+    'AuthServer',
+    'Product',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +58,8 @@ ROOT_URLCONF = 'PaymentSystem.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        ,
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,13 +79,9 @@ WSGI_APPLICATION = 'PaymentSystem.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'payment_system',
-        'USER' : 'root',
-        'PASSWORD' : 'qwer1234',
-        'HOST' : '127.0.0.1',
-        'PORT' : '3306',
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -118,11 +116,10 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')

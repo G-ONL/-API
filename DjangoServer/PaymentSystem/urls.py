@@ -24,5 +24,6 @@ urlpatterns = [
     # 고객 정보를 관리하는 API 서버
     path('users/', include('AuthServer.urls'), name='users'),
 
-    path('payments', include('payment.url'))
+    path('payments/', include('payment.url')),
+    path('products', include('Product.url'))
 ]

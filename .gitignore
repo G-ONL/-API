@@ -112,3 +112,15 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+DjangoServer/AuthServer/__pycache__/
+DjangoServer/AuthServer/migrations/
+DjangoServer/PaymentSystem/__pycache__/
+
+../.DS_Store
+DjangoServer/AuthServer/pycache/.
+DjangoServer/AuthServer/migrations/
+DjangoServer/payment/__pycache__/.
+DjangoServer/common/__pycache__/
+DjangoServer/common/__pycache__/.
+DjangoSercer/common/pycache

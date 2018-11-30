@@ -1,7 +1,7 @@
 import logging
 
 
-if __name__ == '__main__' :
+class LoggerHandler():
     server_logger = logging.getLogger('logging_example')
     server_logger.setLevel(logging.DEBUG)
 

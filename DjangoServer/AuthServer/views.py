@@ -111,7 +111,7 @@ def consumer_signup(request):
             {
                 "code" : status_code['CONSUMER_WRONG_PARAMETER']['code'],
                 "message" : status_code['CONSUMER_WRONG_PARAMETER']['msg'],
-                "result" : request.data
+                "result" : serializer.errors
             },
             status=status.HTTP_200_OK)
 
@@ -131,7 +131,7 @@ def consumer_signup(request):
                 {
                     "code": status_code['CONSUMER_GET_LIST_FAILURE']['code'],
                     "msg": status_code['CONSUMER_GET_LIST_FAILURE']['msg'],
-                    "result": result_msg
+                    "result": serializer.errors
                 },
                 status=status.HTTP_200_OK)
 
@@ -151,7 +151,7 @@ def consumer_signin(request):
                 {
                     "code" : status_code['CONSUMER_SIGNIN_INVALID_EMAIL']['code'],
                     "msg" : status_code['CONSUMER_SIGNIN_INVALID_EMAIL']['msg'],
-                    "results" : request.data
+                    "results" : "해당 고객 id가 존재하지 않습니다."
                 },
                 status=status.HTTP_404_NOT_FOUND
             )
@@ -167,7 +167,7 @@ def consumer_signin(request):
                 {
                     "code" : status_code['CONSUMER_SIGNIN_INVALID_PHONE']['code'],
                     "msg" : status_code['CONSUMER_SIGNIN_INVALID_PHONE']['msg'],
-                    "results" : request.data
+                    "results" : "해당 고객 휴대전화 번호가 일치하지 않습니다."
                 },
                 status=status.HTTP_200_OK
             )

@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<meta charset="UTF-8"/>
+<head>
+  <style>
+    body {
+      width: 400px;
+      /* 1rem 은 16px 정도 */
+      padding: 1rem;
+    }
+
+    textarea {
+      width: 100%;
+      font-size: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>간편 결제 시스템</h1>
+  <!-- TODO Change -->
+  <form action="http://localhost:8080/api/login" modelAttrubute="consumerLogin" method="post">
+    <input type="text" id="email" name="email" placeholder="email"><br>
+    <input type="text" id="phone" name="phone" placeholder="phone number"><br>
+    <input type="submit" id="submit" value="submit">
+  </form>
+
+  <div id="next"></div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

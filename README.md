@@ -38,8 +38,8 @@ Wiki
 [/payment](https://github.com/G-ONL/payment-system/wiki/%EA%B2%B0%EC%A0%9C--(-payments))
 
 ## 회고
-issue
+[회고](https://github.com/G-ONL/payment-system/issues/1/)
 
-[/](https://github.com/G-ONL/payment-system/issues/1)
+
 
 

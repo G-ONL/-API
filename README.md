@@ -33,6 +33,13 @@
 * 최예진(상품 API 설계 및 서버 구현)
 
 ## 결제 API
-wiki
+Wiki
+
 [/payment](https://github.com/G-ONL/payment-system/wiki/%EA%B2%B0%EC%A0%9C--(-payments))
+
+## 회고
+issue
+
+[](https://github.com/G-ONL/payment-system/issues/1)
+
 

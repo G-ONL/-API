@@ -25,7 +25,7 @@
 * 댓글, 좋아요등의 부가적인 기능 구현.
 
 ## 개발 스택
-* Django+ javascript
+* Django+ javascript + mysql
 
 ## 맡은 역할
 * 김재윤(결제 API 설계 및 서버 구현)
@@ -33,6 +33,6 @@
 * 최예진(상품 API 설계 및 서버 구현)
 
 ## 결제 API
-
-
+wiki
+[/payment](https://github.com/G-ONL/payment-system/wiki/%EA%B2%B0%EC%A0%9C--(-payments))
 

@@ -32,13 +32,14 @@
 * 조민국(익스텐션 결제 페이지 구현)
 * 최예진(상품 API 설계 및 서버 구현)
 
-## 결제 API
-Wiki
+## 링크
+Wiki 결제 API  [/payment](https://github.com/G-ONL/payment-system/wiki/%EA%B2%B0%EC%A0%9C--(-payments))
 
-[/payment](https://github.com/G-ONL/payment-system/wiki/%EA%B2%B0%EC%A0%9C--(-payments))
-
-## 회고
 [회고](https://github.com/G-ONL/payment-system/issues/1/)
+
+[기본기능](https://github.com/G-ONL/payment-system/issues/2/)
+
+[스토리보드](https://github.com/G-ONL/payment-system/issues/3/)
 
 
 

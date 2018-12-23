@@ -40,6 +40,6 @@ Wiki
 ## 회고
 issue
 
-[](https://github.com/G-ONL/payment-system/issues/1)
+[/](https://github.com/G-ONL/payment-system/issues/1)
 
 

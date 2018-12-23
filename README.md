@@ -28,12 +28,15 @@
 * Django+ javascript + mysql
 
 ## 맡은 역할
-* 김재윤(결제 API 설계 및 서버 구현)
+* 김재윤(결제,상품 API 설계 및 서버 구현)
 * 조민국(익스텐션 결제 페이지 구현)
-* 최예진(상품 API 설계 및 서버 구현)
+* 최예진(고객 API 설계 및 서버 구현)
 
 ## 링크
-Wiki 결제 API  [/payment](https://github.com/G-ONL/payment-system/wiki/%EA%B2%B0%EC%A0%9C--(-payments))
+Wiki
+- 결제 API  [/payments](https://github.com/G-ONL/payment-system/wiki/%EA%B2%B0%EC%A0%9C--(-payments))
+- 상품 API  [/products](https://github.com/G-ONL/payment-system/wiki/%EC%83%81%ED%92%88-%EC%A1%B0%ED%9A%8C-(-products))
+- 고객 API [/users](https://github.com/G-ONL/payment-system/wiki/%EA%B3%A0%EA%B0%9D-%EC%A0%95%EB%B3%B4-%EA%B4%80%EB%A6%AC-(%ED%8C%90%EB%A7%A4%EC%9E%90-%EB%B0%8F-%EA%B5%AC%EB%A7%A4%EC%9E%90)-(-users-))
 
 [회고](https://github.com/G-ONL/payment-system/issues/1/)
 
